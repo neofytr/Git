@@ -31,3 +31,5 @@ This also means that there is very little you can't do if you're offline or off 
 ## Git has Integrity
 
 Everything in Git is checksummed before it is stored and is then referred to by that checksum. This means it's impossible to change the contents of any file or directory without Git knowing about it.
+
+This functionality is built into Git at the lowest levels and is integral to it's philosophy. You can't lose information in transit or get file corruption without Git being able to detect it.
