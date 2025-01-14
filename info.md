@@ -37,3 +37,24 @@ This functionality is built into Git at the lowest levels and is integral to it'
 The mechanism that Git uses for this checksumming is called a SHA-1 hash. This is a 40-character string composed of hexadecimal characters (0-9 and a-f) and calculated based on the contents of a file or directory structure in Git.
 
 You will see these hash values all over the place in Git because it uses them so much. In fact, Git stores everything in its database not by file name but by the hash value of its contents.
+
+## Git Generally Only Adds Data
+
+When you do actions in Git, nearly all of them only *add* data to the Git database. It is hard to get the system to do anything that is not undoable or to make it erase data in any way. As with any VCS, you can lose or mess up changes you haven't committed yet, but after you commit a snapshot into Git, it is very difficult to lose, especially if you regularly push your database to another repository.
+
+This makes using Git a joy because we know we can experiment without the danger of severely screwing things up.
+
+## The Three States
+
+Git has three main states that your files can reside in: *modified*, *staged*, and *committed*:
+
+1. Modified means that you have changed the file but have not committed it to your database yet.
+2. Staged means that you have marked a modified file in it's current version to go into your next commit snapshot.
+3. Committed means that the data is safely stored in your local database.
+
+
+This leads us to the three main sections of a Git project: the working tree, the staging area, and the Gir directory (repository).
+
+The working tree is a single checkout of one version of the project. These files are pulled out of the compressed database in the Git directory (repository) and placed on disk for you to use or modify.
+
+The staging area is a file, generally contained in your Git directory, that stores information about what will go into your next commit. It's technical name in Git parlance is the "index", but the phrase "staging area" works just as well.
