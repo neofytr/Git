@@ -33,3 +33,7 @@ This also means that there is very little you can't do if you're offline or off 
 Everything in Git is checksummed before it is stored and is then referred to by that checksum. This means it's impossible to change the contents of any file or directory without Git knowing about it.
 
 This functionality is built into Git at the lowest levels and is integral to it's philosophy. You can't lose information in transit or get file corruption without Git being able to detect it.
+
+The mechanism that Git uses for this checksumming is called a SHA-1 hash. This is a 40-character string composed of hexadecimal characters (0-9 and a-f) and calculated based on the contents of a file or directory structure in Git.
+
+You will see these hash values all over the place in Git because it uses them so much. In fact, Git stores everything in its database not by file name but by the hash value of its contents.
