@@ -116,4 +116,20 @@ git config --show-origin rerere.autoUpdate
 
 # Getting Help
 
+If you ever need help while using Git, there are three equivalent ways to get comprehensive manual page (manpage) help for any of the Git commands:
+
+```bash
+git help <verb>
+git <verb> --help
+man git-<verb>
+```
+
+These commands are nice because you can access them anywhere, even offline.
+
+In addition, if you don't need full-blown manpage help, but just need a quick refresher on the available options for a Git command, you can ask for the more concise "help" output with the `-h` option, as in:
+
+```bash
+git add -h
+```
+
 
