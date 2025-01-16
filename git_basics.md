@@ -103,3 +103,27 @@ It may be helpful to thing of it more as "add precisely this content to the next
 Both files are now staged and will go into your next commit. At this point, suppose you remember one little change that you want to make in `CONTRIBUTING.md` before you commit it. You open it again and make than change, and you're ready to commit. However, let's run `git status` one more time.
 
 Now `CONTRIBUTING.md` is both staged *and* unstaged. It turns out that Git stages a file exactly as it is when you run the `git add` command. If you commit now, the version of `CONTRIBUTING.md` as it was when you last ran the `git add` command is how it will go into the commit, not the version of the file as it looks in your working directory when you run `git commit`. If you modify a file after you run `git add`, you have to run `git add` again to stage the latest version of the file.
+
+### Ignoring Files
+
+Often, you'll have a class of files that you don't want Git to automatically add or even show you as being untracked. These are generally automatically generated files such as log files or files produced by your build system. In such cases, you can create a file listing patterns to match them named `.gitignore`. Here is an example
+
+```plaintext
+*.[oa]
+*~
+```
+The first line tells Git to ignore any files ending in `.o` or `.a` - object and archive files that may be product of building your code.
+
+The second line tells Git to ignore all files whose name ends with a tilde, which is used by many text editors such as Emacs to mark temporary files. You may also include a log, tmp, or pid directory; automatically generated documentation; and so on. Setting up your `.gitignore` file for your new repository before you get going is generally a good idea so you don't accidentally commit files that you really don't want in your Git repository.
+
+The rules for patterns you can put in the `.gitignore` file are as follows:
+
+1. Blank lines or lines starting with # are ignored
+2. Standard glob patterns work, and will be applied recursively throughout the entire working tree.
+3. You can start patterns with a forward slash to avoid recursivity.
+4. You can end patterns with a forward slash to specify a directory.
+5. You can negate a pattern by starting it with an exclaimation point.
+
+Glob patterns are like simplified regular expressions that shells use. An asterisk matches zero or more character; `[abc]` matched any character inside the backets; a question mark matches a single character; and brackets enclosing characters separated by a hyphen (`[0-9]`) matched any character between them. You can also use two asterisks to match nested directories; `a/**/z` would match `a/b/z` or `a/b/c/z` or `a/z` and so on.
+
+In the simple case, a repository might have a single .gitignore file in its root directory, which applies recursively to the entire repository. However, it is also possible to have additional .gitignore files in subdirectories. The rules in these nested .gitignore files apply only to the files under the directory where they are located.
