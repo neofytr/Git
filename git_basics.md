@@ -92,9 +92,14 @@ git add README
 ```
 If you run your status command again, you can see that your README file is now tracked and staged to be committed.
 
-You can tell that it’s staged because it’s under the “Changes to be committed” heading. If you
-commit at this point, the version of the file at the time you ran git add is what will be in the
-subsequent historical snapshot. You may recall that when you ran git init earlier, you then ran git
-add <files> — that was to begin tracking files in your directory. The git add command takes a path
-name for either a file or a directory; if it’s a directory, the command adds all the files in that
-directory recursively.
+You can tell that it’s staged because it’s under the “Changes to be committed” heading. If you commit at this point, the version of the file at the time you ran `git add` is what will be in the subsequent historical snapshot. You may recall that when you ran `git init` earlier, you then ran `git add <files>` — that was to begin tracking files in your directory. The `git add` command takes a path name for either a file or a directory; if it’s a directory, the command adds all the files in that directory recursively.
+
+### Staging Modified Files
+
+Let's change a file that was already tracked. If you change a previously tracked file called `CONTRIBUTING.md` and then run your `git status` again, the `CONTRIBUTING.md` file appears under a section called "Changes not staged for commit" - which means that a file that is tracked has been modified in the working directory but not yet staged. To stage it, you run the `git add` command. `git add` is a multipurpose command - you use it to begin tracking new files, to stage files, and to do other things like marking merge-conflicted files as resolved.
+
+It may be helpful to thing of it more as "add precisely this content to the next commit" rather than "add this file to the project". Let's run `git add` now to stage the `CONTRIBUTING.md` file, and run `git status` again.
+
+Both files are now staged and will go into your next commit. At this point, suppose you remember one little change that you want to make in `CONTRIBUTING.md` before you commit it. You open it again and make than change, and you're ready to commit. However, let's run `git status` one more time.
+
+Now `CONTRIBUTING.md` is both staged *and* unstaged. It turns out that Git stages a file exactly as it is when you run the `git add` command. If you commit now, the version of `CONTRIBUTING.md` as it was when you last ran the `git add` command is how it will go into the commit, not the version of the file as it looks in your working directory when you run `git commit`. If you modify a file after you run `git add`, you have to run `git add` again to stage the latest version of the file.
