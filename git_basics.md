@@ -1,6 +1,6 @@
 # Git Basics
 
-## Getting a Git 
+## Getting a Git Repository
 
 You typically obtain a Git repository in one of two ways:
 
@@ -29,3 +29,25 @@ git commit -m "Initial Project Version"
 At this point, you have a Git repository with tracked files and an initial commit.
 
 ### Cloning an Existing Repository
+
+If you want to get a copy of an existing Git repository, the command you need is `git clone`. Instead of just getting a working copy, Git receives a full copy of nearly all data that the server has. Every version of every file for the history of the project is pulled down by default when you run `git clone`. 
+
+In fact, if your server disk gets corrupted, you can often use nearly any of the clones on any client to set the server back to the state it was in when it was clone (you may lose some server-side hooks and such, but all the versioned data will be there).
+
+You clone a repository with `git clone <url>`.
+
+```bash
+git clone https://github.com/libgit2/libgit2
+```
+
+This creates a directory named `libgit2`, initializes a `.git` directory inside it, pulls down all the data for that repository, and checks out a working copy of the latest version.
+
+If you want to clone the repository into a directory named something other than `libgit2`, you can specify the directory name as an additional argument:
+
+```bash
+git clone https://github.com/libgit2/libgit2 mylibgit2
+```
+
+This command does the same thing as the previous one, but the target directory is `mylibgit2`
+
+#
