@@ -127,3 +127,19 @@ The rules for patterns you can put in the `.gitignore` file are as follows:
 Glob patterns are like simplified regular expressions that shells use. An asterisk matches zero or more character; `[abc]` matched any character inside the backets; a question mark matches a single character; and brackets enclosing characters separated by a hyphen (`[0-9]`) matched any character between them. You can also use two asterisks to match nested directories; `a/**/z` would match `a/b/z` or `a/b/c/z` or `a/z` and so on.
 
 In the simple case, a repository might have a single .gitignore file in its root directory, which applies recursively to the entire repository. However, it is also possible to have additional .gitignore files in subdirectories. The rules in these nested .gitignore files apply only to the files under the directory where they are located.
+
+### Viewing Your Staged and Unstaged Changes
+
+If the git status command is too vague for you — you want to know exactly what you changed, not just which files were changed — you can use the git diff command. We’ll cover git diff in more detail later, but you’ll probably use it most often to answer these two questions: What have you changed but not yet staged? And what have you staged that you are about to commit? Although git status answers those questions very generally by listing the file names, git diff shows you the exact lines added and removed — the patch, as it were.
+
+Let's say you edit and stage the README file again and then edit the CONTRIBUTING.md file without staging it. 
+
+To see what you've changed but not yet staged, type `git diff` with no other arguments. This command compares what is in your working directory with what is in your staging area. The result tells you the changes you've made that you haven't yet staged.
+
+If you want to see what you've staged that will go into your next commit, you can use the `git diff --staged`. This command compares your staged changes to your last commit.
+
+It's important to note that `git diff` by itself doesn't show all changes made since your last commit - only changes that are still unstaged. If you've staged all your changes, `git diff` will give you no output.
+
+For another example, if you stage the CONTRIBUTING.md file and then edit it, you can use `git diff` to see the changes in the file that are staged and the changes that are unstaged.
+
+You can use `git diff` to see what is still unstaged, and use `git diff --cached` (`--cached` and `--staged` are synonymous) to see what you've staged so far (in comparison to the precious commit).
